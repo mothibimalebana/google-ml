@@ -19,5 +19,5 @@ training_df = df.loc[:, ('TRIP_MILES', 'TRIP_SECONDS', 'FARE', 'COMPANY', 'PAYME
 # data exploration
 print(training_df.describe(include='all'))
 
-
-
+# correlation matrix
+print(training_df.corr(numeric_only=True))
