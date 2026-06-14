@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 
+
 # machine learning
 import keras
 import ml_edu.experiment
@@ -12,7 +13,11 @@ import plotly.express as px
 # load data
 df = pd.read_csv("chicago_taxi_train.csv")
 
-print("==="*20)
+# update dataframe
 training_df = df.loc[:, ('TRIP_MILES', 'TRIP_SECONDS', 'FARE', 'COMPANY', 'PAYMENT_TYPE', 'TIP_RATE')]
 
-print(training_df.head(200))
+# data exploration
+print(training_df.describe(include='all'))
+
+
+
