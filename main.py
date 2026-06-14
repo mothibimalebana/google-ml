@@ -8,3 +8,6 @@ import ml_edu.results
 
 # data visualization
 import plotly.express as px
+
+# load data
+df = pd.read_csv("chicago_taxi_train.csv")
