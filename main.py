@@ -11,3 +11,8 @@ import plotly.express as px
 
 # load data
 df = pd.read_csv("chicago_taxi_train.csv")
+
+print("==="*20)
+training_df = df.loc[:, ('TRIP_MILES', 'TRIP_SECONDS', 'FARE', 'COMPANY', 'PAYMENT_TYPE', 'TIP_RATE')]
+
+print(training_df.head(200))
