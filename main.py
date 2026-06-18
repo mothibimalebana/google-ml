@@ -1,6 +1,6 @@
 import pandas as pd
 
-df = pd.read_csv("home-data-for-ml-course/train.csv", index_col=0)
+df = pd.read_csv("melbourne/melb_data.csv")
 
 print(df.describe())
 print(df.corr(numeric_only=True))
