@@ -1,6 +1,6 @@
 import pandas as pd
 from sklearn.linear_model import LinearRegression
-from sklearn.tree import DecisionTreeRegressor
+from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error
 
@@ -31,11 +31,15 @@ X = df[features]
 # split the data
 train_X, val_X, train_y, val_y = train_test_split(X, y, test_size=0.2, random_state=0)
 # define a model
-model = DecisionTreeRegressor(random_state=0)
+model = RandomForestRegressor(random_state=1)
 model.fit(train_X, train_y)
 
-predicted_y = model.predict(val_X.head())
+predicted_y = model.predict(val_X)
 print("estimated: \n", predicted_y)
-print("\nactual: \n", val_y.head())
+print("\nactual: \n", val_y)
 
-print("\nmae: \n", mean_absolute_error(val_y.head(), predicted_y)),
+mae = mean_absolute_error(val_y, predicted_y)
+print("\nmae: \n", mae),
+
+output = pd.DataFrame({'ID': val_y.index, 'Predicted_Saleprice': predicted_y, 'Saleprice': val_y})
+output.to_csv('submission.csv', index=False)
