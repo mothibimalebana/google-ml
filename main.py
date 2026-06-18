@@ -1,5 +1,6 @@
 import pandas as pd
-from sklearn.linear_model import LinearRegression 
+from sklearn.linear_model import LinearRegression
+from sklearn.tree import DecisionTreeRegressor
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error
 
@@ -30,7 +31,7 @@ X = df[features]
 # split the data
 train_X, val_X, train_y, val_y = train_test_split(X, y, test_size=0.2, random_state=0)
 # define a model
-model = LinearRegression()
+model = DecisionTreeRegressor(random_state=0)
 model.fit(train_X, train_y)
 
 predicted_y = model.predict(val_X.head())
@@ -38,5 +39,3 @@ print("estimated: \n", predicted_y)
 print("\nactual: \n", val_y.head())
 
 print("\nmae: \n", mean_absolute_error(val_y.head(), predicted_y)),
-
-print(len(features))
