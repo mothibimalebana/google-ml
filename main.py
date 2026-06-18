@@ -1,6 +1,7 @@
 import pandas as pd
 from sklearn.linear_model import LinearRegression 
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_absolute_error
 
 df = pd.read_csv("melbourne/melb_data.csv")
 df = df.dropna(axis=0)
@@ -30,9 +31,12 @@ X = df[features]
 train_X, val_X, train_y, val_y = train_test_split(X, y, test_size=0.2, random_state=0)
 # define a model
 model = LinearRegression()
-model.fit(X, y)
+model.fit(train_X, train_y)
 
-print("estimated: ", model.predict(X.head()))
-print("actual: ", y.head())
+predicted_y = model.predict(val_X.head())
+print("estimated: \n", predicted_y)
+print("\nactual: \n", val_y.head())
 
-print("error: ", model.predict(X.head()) - y.head())
+print("\nmae: \n", mean_absolute_error(val_y.head(), predicted_y)),
+
+print(len(features))
