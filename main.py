@@ -1,5 +1,7 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import mean_absolute_error
 
 # read the data
 melbourne = pd.read_csv("melbourne/melb_data.csv")
@@ -31,4 +33,9 @@ X_test = X_test[my_cols].copy()
 # get a list of categorical variables
 categoricals_features = [col for col in X_train.columns if X_train[col].dtype == "str"]
 
-print(categoricals_features)
+# define function to measure quality of each approach
+def score_dataset(X_train, X_test, y_train, y_test):
+    model = RandomForestRegressor(n_estimators=10, random_state=0)
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
+    return mean_absolute_error(y_test, y_pred)
