@@ -28,4 +28,7 @@ my_cols = cols_with_low_cardinality + cols_with_numbers
 X_train = X_train[my_cols].copy()
 X_test = X_test[my_cols].copy()
 
-print(X_train.head())
+# get a list of categorical variables
+categoricals_features = [col for col in X_train.columns if X_train[col].dtype == "str"]
+
+print(categoricals_features)
